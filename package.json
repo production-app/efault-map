@@ -1,0 +1,15 @@
+{
+  "name": "efault",
+  "version": "1.0.0",
+  "description": "Real-Time Fault Locator",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "author": "ADEBAYO ABIODUN",
+  "license": "ISC",
+  "homepage": "https://production-app.github.io/efault-map",
+  "dependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
