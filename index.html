@@ -481,6 +481,22 @@
 	    
 #googft-legend{background-color:rgba(249, 249, 249, 0.82); border:1px solid #000000;font-family:'Lato', sans-serif;font-size:12px;margin:5px;border-radius: 10px;padding:10px 10px 8px}#googft-legend p{font-weight:bold;margin-top:0}#googft-legend div{margin-bottom:5px}.googft-legend-swatch{border:1px solid;float:left;height:12px;margin-right:8px;width:20px}.googft-legend-range{margin-left:0}.googft-dot-icon{margin-right:8px}.googft-paddle-icon{height:24px;left:-8px;margin-right:-8px;position:relative;vertical-align:middle;width:24px}.googft-legend-source{margin-bottom:0;margin-top:8px}.googft-legend-source a{color:#666;font-size:11px}
      
+	.filter-red2 {
+    background-color: #FB6353;
+    border: 1px solid #000000;
+}
+	    
+.filter-box2 {
+    height: 6px;
+    width: 40px;
+    display: inline-block;
+    -webkit-border-radius: 65px;
+    -moz-border-radius: 65px;
+    border-radius: 65px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
     </style>
 </head>
 
@@ -763,8 +779,15 @@
         <img class="googft-dot-icon" src="http://maps.google.com/mapfiles/dots/green.gif"/>
         <span class="googft-legend-range">Customer ONTs</span>
       </div>
+	
+	<div>
+        <span class="filter-box2 filter-red2"></span>
+        Cable
+      </div>
+		
+		
       <div class="googft-legend-source">
-      <img src="images/ipnx.png" style="width: 60px;">
+     
         
       </div>
       <input id="googft-legend-close" style="display:none" type="button" value="Hide">
