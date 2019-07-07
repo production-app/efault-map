@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>eFault Map</title>
+    
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+   <link rel="stylesheet" href="css/gmaps-sidebar.css"  />
+   <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
+   <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+   <link href='//fonts.googleapis.com/css?family=Raleway:600,900,400|Roboto:300,700' rel='stylesheet'>
+   
+   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            padding-top: 50px;
+        }
+
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            font: 11pt 'Roboto', Arial, Helvetica, sans-serif;
+        }
+
+        .lorem {
+            font-style: italic;
+            color: #AAA;
+        }
+        #dialog {
+            display: none;
+        }
+        
+        @media (min-width: 320px) {
+        .gm-style-mtc {
+           display: none !important;
+          } }
+
+           @media (min-width: 768px) {
+            .gm-style-mtc {
+           display: block !important;
+          } }
+        
+
+           @media (min-width: 480px) {
+            .gm-style-mtc {
+           display: block !important;
+          } }
+        
+        @media (min-width: 480px) {
+        #dialog {
+          width: 300px !important;
+          height: 320px !important;
+          } }
+
+          @media (min-width: 320px) {
+            #dialog {
+                width: 300px !important;
+                height: 320px !important;
+            } }
+            .avatar {
+            vertical-align: middle;
+            width: 45px;
+            border-radius: 50%;
+            height: 47px;
+            margin-bottom: 9px;
+            }
+
+             .avatar1 {
+                vertical-align: middle;
+                width: 34px;
+                border-radius: 50%;
+                margin-bottom: 8px;
+                       }
+
+            .modal-header{
+                padding: 10px !important;
+            }
+
+            .modal-body{
+                padding: 3px !important;
+            }
+            
+
+     @-webkit-keyframes spaceboots {
+	0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+	100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shake:hover,
+.shake:focus {
+	-webkit-animation-name: spaceboots;
+	-webkit-animation-duration: 0.8s;
+	-webkit-transform-origin:50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.navbar-brand{
+    min-height: 12px;
+    padding: 0 42px 5px !important;
+}
+
+
+.filter-green {
+    background-color: #52ed7b;
+ 
+}
+.filter-box {
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+    -webkit-border-radius: 65px;
+    -moz-border-radius: 65px;
+    border-radius: 65px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.disabled
+        {
+            background: none repeat scroll 0 0 burlyWood;
+            cursor: default !important;
+        }
+#sts {
+
+    margin: -4px -3px 6px -3px;
+    padding: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 11px;
+    background: #a9a9a9;
+    color: black;
+
+}
+
+.innerDiv1 {
+  background-color: white;
+  border-radius: 50%;
+  height: 4px;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 4px;
+}
+.animate1 {
+  animation: animate 1s;
+}
+
+@keyframes animate {
+  from {
+    opacity: 0.4;
+    transform: scale3d(1, 1, 1);
+  }
+  to {
+    opacity: 0;
+    transform: scale3d(100, 100, 1);
+  }
+}
+
+
+   #button5 {
+       position: relative;
+       
+   }
+
+   .modal-footer {
+       padding: 10px !important;
+
+   }
+
+
+
+   /* Amination  */
+
+    .pin-wrap {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin-top: -120.7106781187px;
+  margin-left: -50px;
+  -webkit-transform-origin: 50% 120.7106781187% 0;
+          transform-origin: 50% 120.7106781187% 0;
+}
+
+.pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  -webkit-transform-origin: 50% 120.7106781187% 0;
+          transform-origin: 50% 120.7106781187% 0;
+}
+
+.pin::after {
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    content: "";
+    -webkit-transform: rotateZ(-6deg);
+    transform: rotatez(-6deg);
+    border: 20px solid #f93c11;
+    border-radius: 50% 50% 50% 50%;
+    content: "S";
+    background: wheat;
+    font-weight: 500;
+    font-size: 17px;
+    text-align: center;
+    padding-top: 20px;
+    text-transform: capitalize;
+    transform: rotateX;
+    transform: rotateX;
+
+}
+
+.pin::before {
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  content: '';
+  -webkit-transform: rotateZ(-45deg);
+          transform: rotateZ(-45deg);
+  border: 18px solid #d22b05;
+  border-radius: 50% 50% 50% 0;
+}
+
+.shadow {
+  position: absolute;
+}
+
+.shadow::after {
+  position: absolute;
+  left: -125px;
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  content: '';
+  -webkit-transform: rotateX(55deg);
+          transform: rotateX(55deg);
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.5) 100px 0 20px;
+}
+
+.pulse {
+  position: absolute;
+  margin-top: -50px;
+  margin-left: -50px;
+  -webkit-transform: rotateX(55deg);
+          transform: rotateX(55deg);
+}
+
+.pulse::after {
+  display: block;
+  width: 100px;
+  height: 100px;
+  content: '';
+  -webkit-animation: pulsate 1s ease-out;
+          animation: pulsate 1s ease-out;
+  -webkit-animation-delay: 1.1s;
+          animation-delay: 1.1s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  opacity: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 6px 3px #f93c11;
+}
+
+@-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(0.1, 0.1);
+            transform: scale(0.1, 0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    -webkit-transform: scale(0.1, 0.1);
+            transform: scale(0.1, 0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+    opacity: 0;
+  }
+}
+
+#vgc{
+    display: none; 
+}
+
+ #bala {
+     display: none;
+ }
+
+
+ .x1 {
+     position: relative; 
+    -webkit-animation-name: move; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+    animation: move 2s infinite;
+    color: #bbb;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes move {
+  0% {left: 0px;}
+  20% {left: 5px; color: #000;}
+  40% {left: 0px;}   
+}
+
+/* Standard syntax */
+
+@keyframes move {
+  0% {top: 0px; color: rgb(241, 234, 234);}
+  20% {top: 3px; color: #000;}
+  40% {top: 0px; color:  greenyellow;}
+}
+
+
+.x2 {
+     position: relative; 
+    -webkit-animation-name: move; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 2s; /* Safari 4.0 - 8.0 */
+    animation: move 2s infinite;
+    color: #bbb;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes move {
+  0% {left: 0px;}
+  20% {left: 5px; color: #000;}
+  40% {left: 0px;}   
+}
+
+/* Standard syntax */
+
+@keyframes move {
+  0% {top: 0px; color: rgb(241, 234, 234);}
+  20% {top: 3px; color: #000;}
+  40% {top: 0px; color:  greenyellow;}
+}
+
+.sp {
+  width: 32px;
+  height: 32px;
+  clear: both;
+  margin: 20px auto;
+}
+
+/* Spinner Circle Rotation */
+.sp-circle {
+  display: none; 
+  margin: -38px 1px -10px 89px;
+  border: 4px rgba(0, 0, 0, 0.25) solid;
+  border-top: 4px black solid;
+  border-radius: 50%;
+  -webkit-animation: spCircRot .6s infinite linear;
+  animation: spCircRot .6s infinite linear;
+}
+
+@-webkit-keyframes spCircRot {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+  }
+}
+@keyframes spCircRot {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
+
+.inner3 {
+  background-color:transparent;
+  width: 100px;
+  height: 100px;
+  border-radius:50px;
+  display: inline;
+  box-shadow: 0 0 8px #52ed7b, inset 0 0 8px #52ed7b;
+  -webkit-animation: pulse2 2s linear 1s infinite;
+}
+
+
+@-webkit-keyframes pulse2 {
+  0% { box-shadow:0 0 8px #52ed7b, inset 0 0 8px #52ed7b; }
+  50% { box-shadow:0 0 16px #52ed7b, inset 0 0 14px #52ed7b; }
+  100% { box-shadow:0 0 8px #52ed7b, inset 0 0 8px #0000; }
+}
+
+.panel-info {
+  margin: 10px;
+}
+#c1{
+    background: #d9edf7;
+    padding: 10px; 
+    border-radius: 10px;
+    margin: 5px;
+    border: 2px solid;
+    display: none;
+    width: 72%;
+}
+
+.fab{
+  color: #82beed; 
+}
+
+#panela {
+        position: absolute;
+        top: 56px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 1000;
+        padding: 5px;
+        display: none;
+      }
+
+      #panelb {
+        position: absolute;
+        top: 56px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 1000;
+        padding: 5px;
+        display: none;
+      }
+
+      .alert-dismissible .close {
+        position: unset;
+      }
+     
+    </style>
+</head>
+
+<body onload="initialize()">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="images/efault.png"> </a>
+                  </div>
+              
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                      
+                      <li><a href="https://heroguyz.github.io/">eDataMap</a></li>
+                      
+                    </ul>
+                    <form class="navbar-form navbar-right">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                      </div>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                      
+                      
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+              </nav>
+
+              <div id="sidebar" class="sidebar collapsed">
+                    <!-- Nav tabs -->
+                    <div class="sidebar-tabs">
+                        <ul role="tablist">
+                            <li><a href="#home" role="tab"><i class="fa fa-bars shake"></i></a></li>
+                            <li><a class="b" role="" onclick="dialog.open()" title="eFault Console" style="cursor: pointer; border-top: 1px solid #e5e5e5; "><img src="../img/avatar.png" alt="Avatar" class="avatar1 shake"> </a></li>
+                            <li class=""><a  style="border-top: 1px solid #e5e5e5;" href="#email"  role="tab"><i class="fa fa-envelope" ></i></a></li>
+                            <li><a  style="border-top: 1px solid #e5e5e5;" href="#messages1" role="tab"><i class="fab fa-stripe-s"></i></a></li>
+                        </ul>
+                        
+                      <ul role="tablist">
+                            <li class=""><a style="border-top: 1px solid #e5e5e5;" href="#messages"  role="tab"><i class="fas fa-share-alt"></i></a></li>
+                        </ul>
+                        
+                    </div>
+            
+                    <!-- Tab panes -->
+                    <div class="sidebar-content">
+                        <div class="sidebar-pane" id="home">
+                            <h1 class="sidebar-header">
+                                Welcome to eFault Map.
+                                <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                            </h1>
+            
+                                        
+                            <p class="">The application is specially design for utitliy infrastructure like Fiber Cabling</p>
+                            <p> <input type="text"></p>
+                            
+                        </div>
+            
+                        <div class="sidebar-pane" id="profile">
+                            <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                        </div>
+            
+                        <div class="sidebar-pane" id="messages">
+                            <h1 class="sidebar-header">Share<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                           
+
+                           <form class="form-inline" NAME="frm" id="frm" method="post" action="viewmap.php">
+                                <div class="form-group">
+                                   
+                                    <input type="text" class="form-control" id="share1" style="display: none; margin: 40px 5px 40px 10px;">
+                                    <input type="text" class="form-control" id="share2" style="display: none; margin: 40px 5px 40px 10px;">
+
+                                </div>
+                                <a style="cursor: pointer;" class="btn btn-danger" id="share" value="Share Via email"  onclick="copy()">Copy Me</a>
+
+                                </form>
+                                <div id="u"> </div>
+
+                        <!--  <script src="http://www.google.com/jsapi" type="text/javascript"> </script> -->
+
+        
+                        </div>
+
+
+
+                        <div class="sidebar-pane" id="messages1">
+                        <h1 class="sidebar-header">Slack Management<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+
+
+                        <div class="panel panel-info">
+                          <div class="panel-heading">Slack Management</div>
+                          <div class="panel-body">
+
+                          <form action="">
+
+                          <div id="c1"> </div>
+                            <div class="form-group">
+                              <label for="route">Total Route Length:</label>
+                              <input type="number" class="form-control" id="a1" style="width: 50%">
+                            </div>
+                            <div class="form-group">
+                              <label for="pwd">Total Cable Length:</label>
+                              <input type="number" class="form-control" id="b1" style="width: 50%">
+                            </div>
+                                                       
+                            <button type="submit" class="btn btn-default" id="d" onclick="total()" >Submit</button>
+                            
+                          </form>
+                          
+                          
+                          </div>
+                        </div>
+                        
+                        <script> 
+
+                        function total(e){
+
+                         // $(".sp-circle").fadeIn("fast");
+
+                          event.preventDefault();
+
+                          var a = parseInt(document.getElementById("a1").value);
+                          var b = parseInt(document.getElementById("b1").value) ;
+                          var c;
+
+                          c = a - b;
+
+                          $('#c1').css({ "display": "block"});
+
+                          document.getElementById('c1').innerHTML = "The total length of slack: " + c +"m";                     
+
+                       }
+                        
+                        </script>
+                            
+        
+                        </div>
+            
+                        <div class="sidebar-pane" id="settings">
+                            <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+                        </div>
+
+                        <div class="sidebar-pane" id="email">
+                          <h1 class="sidebar-header">Email<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+
+
+                            <form  method="post" enctype= "multipart/form-data" id="frm2" >
+                          
+                          <div class="form-group">
+                            <label for="" style="margin: 9px 15px 4px 1px"  >To-Email : </label>
+                            <input type="email"  class="form-control" name="emails" id="emails" style="width: 60% !important;">
+                          </div>
+                          <div class="form-group">
+                            <label for="" style="margin: 9px 15px 4px 1px" >Subject: </label>
+                            <input type="textbox" class="form-control" name="subject" id="subject" style="width: 60% !important;">
+                          </div>
+                          <div class="form-group">
+                            <label for="" style="margin: 9px 15px 4px 1px">URL-Link:</label>
+                            <input type="textbox" class="form-control" name="url" id="url" style="width: 60% !important;">
+                          </div>
+                          
+                          <button type="submit" class="btn btn-success" name="sendmail" id="sendmail" >Send</button>
+                          <div class="sp sp-circle"></div>
+                        </form>
+                         
+
+
+
+                      </div>
+                    </div>
+                </div>
+        
+   
+
+              <div id="dialog" title="eFault Console" width="350">
+                    
+            <div data-role="body">
+            <div style=" border-bottom: 1px solid #e5e5e5;">
+                    
+             <img src="images/avatar.png" alt="Avatar" class="avatar shake" style="cursor: pointer;">
+           <div style="display: inline"><strong> Administrator  </strong>   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  <div class="inner3" style=""><span class="filter-box filter-green"></span></div> Online </div> 
+            </div>
+            
+          <!--  <div style="border-top: 1px solid #e5e5e5; padding: 5px;">
+                    <div>Kindly enter the value of the OTDR readings</div>
+              <input type="text" class="form-control" id="text1" style="width: 30% !important;">
+              <input type="button" class="form-control" id="button1" value="Enter">
+              <input type="button" class="form-control" id="button2" value="Reset">
+            </div> --> 
+
+              <div><p id="sts"> As indicated, here is the real-time Feeder Cable route between Baralabe Musa, V.I (POP) and Victoria Garden City, Lekki (POP) on the Map. Kindly choose the your area, where to test from and key in the OTDR value. </p>  </div>  
+
+              <div style="display: inline-block;">  <button type="button" id="button4" class="btn btn-primary"><i class="fas fa-chevron-circle-right"></i> Baral.(POP) <i class="fas fa-wifi x2"></i> </button>  <i class="fas fa-map-pin"></i>  <button type="button" id="button3" class="btn btn-danger"> <i class="fas fa-wifi x1"></i> VGC(POP)  <i class="fas fa-chevron-circle-left"></i></button> 
+                  
+            </div>
+
+
+               <div id="bala"><input type="text" class="form-control" id="text2" placeholder="Metre" style="margin: 6px 15px 4px 11px; display: inherit; width: 30% !important;">
+                <button type="button" id="button6" class="btn btn-success"> Enter <span class="glyphicon glyphicon-send"></span> </button>
+                <button type="button" id="button7" class="btn btn-warning"> Reset <span class="glyphicon glyphicon-trash"></span>  </button>               
+                </div>
+
+                <div id="vgc"><input type="text" class="form-control" id="text1" placeholder="Metre" style="margin: 7px 7px 4px 11px; display: inherit; width: 30% !important;">
+                <button type="button" id="button1" class="btn btn-success"> Enter <span class="glyphicon glyphicon-send"></span> </button>
+                <button type="button" id="button5" class="btn btn-warning"> Reset <span class="glyphicon glyphicon-trash"></span>  </button>
+                </div>
+                
+        </div>
+            <div data-role="footer">
+              <button class="btn btn-danger" data-role="close">Cancel <i class="glyphicon glyphicon-trash"></i></button>
+              
+            </div>
+          </div>
+
+
+    
+
+  <!--  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="control-label">Recipient:</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    
+      <div id="panela" class="alert-dismissible fade in" style="margin-left:-100px">
+      <button type='button' class="btn btn-warning" onclick="toggleStreetView()"> <i class="fas fa-street-view"></i>  Toggle Street View</button>  
+      </div>
+
+
+      <div id="panelb" class="alert-dismissible fade in" style="margin-left:-100px">
+      <button type='button'  class="btn btn-warning" onclick="toggleStreetView()"> <i class="fas fa-street-view"></i>  Toggle Street View</button>  
+      </div>
+    <div id="map" class="sidebar-map"></div>
+
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <script data-require="bootstrap@*" data-semver="3.3.7" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHs4Jwbs2CoI7u8NujfRVr4GkWR7cSPbg&libraries=geometry,places&callback=initialize">
+    </script>
+     <script src="js/dynamics.min.js"></script> 
+    <script src="js/jquery-sidebar.js"></script>
+
+    <script>
+        
+
+        var show;
+        var mark;
+
+        function initialize() {
+CustomMarker.prototype = new google.maps.OverlayView();
+
+function CustomMarker(opts) {
+  this.setValues(opts);
+}
+
+CustomMarker.prototype.onAdd = function() {
+  var container = document.createElement("div");
+  var that = this;
+  var div = $(
+    "" +
+      "<div>" +
+      '<div class="shadow"></div>' +
+      '<div class="pulse"></div>' +
+      '<div class="pin-wrap">' +
+      '<div class="pin"></div>' +
+      "</div>" +
+      "</div>" +
+      ""
+  )[0];
+  this.div = div;
+  this.pinWrap = this.div.getElementsByClassName("pin-wrap");
+  this.pin = this.div.getElementsByClassName("pin");
+  this.pinShadow = this.div.getElementsByClassName("shadow");
+  div.style.position = "absolute";
+  div.style.cursor = "pointer";
+  container.appendChild(div);
+  container.style.position = "absolute";
+  container.draggable = true;
+
+  google.maps.event.addDomListener(div, "click", function(e) {
+    if (that.dragging) return;
+    google.maps.event.trigger(self, "click", e);
+    that.animateWobble();
+    console.log('click')
+  });
+
+  google.maps.event.addDomListener(
+    this.get("map").getDiv(),
+    "mouseleave",
+    function() {
+      google.maps.event.trigger(container, "mouseup");
+    }
+  );
+
+  google.maps.event.addDomListener(container, "mousedown", function(e) {
+    this.style.cursor = "move";
+    that.map.set("draggable", false);
+    that.set("origin", e);
+
+    that.moveHandler = google.maps.event.addDomListener(
+      that.get("map").getDiv(),
+      "mousemove",
+      function(e) {
+        if (!that.dragging) that.animateUp();
+        that.dragging = false;
+        var origin = that.get("origin");
+        var left = origin.clientX - e.clientX;
+        var top = origin.clientY - e.clientY;
+        var pos = that
+          .getProjection()
+          .fromLatLngToDivPixel(that.get("position"));
+        var latLng = that
+          .getProjection()
+          .fromDivPixelToLatLng(
+            new google.maps.Point(pos.x - left, pos.y - top)
+          );
+        that.set("origin", e);
+        that.set("position", latLng);
+        that.draw();
+      }
+    );
+  });
+
+  google.maps.event.addDomListener(container, "mouseup", function() {
+    that.map.set("draggable", true);
+    this.style.cursor = "default";
+    if (that.dragging) {
+      that.animateDown();
+    }
+    google.maps.event.removeListener(that.moveHandler);
+    setTimeout(function () {
+      that.dragging = false;
+    }, 0);
+  });
+
+  this.set("container", container);
+  this.getPanes().floatPane.appendChild(container);
+};
+
+CustomMarker.prototype.draw = function() {
+  var div = this.div;
+  var point = this.getProjection().fromLatLngToDivPixel(this.position);
+  if (point) {
+    div.style.left = point.x + "px";
+    div.style.top = point.y + "px";
+  }
+};
+
+
+CustomMarker.prototype.animateUp = function() {
+  // Animate pin up.
+  dynamics.stop(this.pinWrap);
+  dynamics.css(this.pinWrap, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pinWrap,
+    {
+      translateY: -30
+    },
+    {
+      type: dynamics.easeOut,
+      friction: 114,
+      duration: 500,
+    }
+  );
+  
+  // Bounce pin y scale.
+  dynamics.stop(this.pin);
+  dynamics.css(this.pin, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pin,
+    {
+      scaleY: 0.8
+    },
+    {
+      type: dynamics.bounce,
+      duration: 800,
+    }
+  );
+
+  // Animate pin shadow.
+  dynamics.stop(this.pinShadow);
+  dynamics.css(this.pinShadow, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pinShadow,
+    {
+      scale: 0.6
+    },
+    {
+      type: dynamics.easeOut,
+      friction: 114,
+      duration: 500,
+    }
+  );
+};
+
+CustomMarker.prototype.animateDown = function() {
+  // Animate pin dropping.
+  dynamics.stop(this.pinWrap);
+  dynamics.css(this.pinWrap, {
+    transform: "translateY(-30px)"
+  });
+  dynamics.animate(
+    this.pinWrap,
+    {
+      translateY: 0
+    },
+    {
+      type: dynamics.gravity,
+      duration: 500,
+    }
+  );
+
+  // Animate y scale bounce.
+  dynamics.stop(this.pin);
+  dynamics.css(this.pin, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pin,
+    {
+      scaleX: 0.8
+    },
+    {
+      type: dynamics.bounce,
+      duration: 500,
+      frequency: 1,
+      friction: 200,
+    }
+  );
+
+  // Animate pin shadow.
+  dynamics.stop(this.pinShadow);
+  dynamics.css(this.pinShadow, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pinShadow,
+    {
+      scale: 1.0
+    },
+    {
+      type: dynamics.gravity,
+      duration: 500,
+    }
+  );
+};
+
+CustomMarker.prototype.animateDrop = function() {
+  dynamics.stop(this.pinWrap);
+  dynamics.css(this.pinWrap, {
+    transform: "scaleY(2) translateY(-" + $("#map").outerHeight() + "px)",
+    opacity: "1"
+  });
+  dynamics.animate(
+    this.pinWrap,
+    {
+      translateY: 0,
+      scaleY: 1.0
+    },
+    {
+      type: dynamics.gravity,
+      duration: 1800
+    }
+  );
+
+  dynamics.stop(this.pin);
+  dynamics.css(this.pin, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pin,
+    {
+      scaleY: 0.8
+    },
+    {
+      type: dynamics.bounce,
+      duration: 1800,
+      bounciness: 600
+    }
+  );
+
+  dynamics.stop(this.pinShadow);
+  dynamics.css(this.pinShadow, {
+    transform: "scale(0,0)"
+  });
+  dynamics.animate(
+    this.pinShadow,
+    {
+      scale: 1
+    },
+    {
+      type: dynamics.gravity,
+      duration: 1800
+    }
+  );
+};
+
+CustomMarker.prototype.animateBounce = function() {
+  dynamics.stop(this.pinWrap);
+  dynamics.css(this.pinWrap, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pinWrap,
+    {
+      translateY: -30
+    },
+    {
+      type: dynamics.forceWithGravity,
+      bounciness: 0,
+      duration: 500,
+      delay: 150
+    }
+  );
+
+  dynamics.stop(this.pin);
+  dynamics.css(this.pin, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pin,
+    {
+      scaleY: 0.8
+    },
+    {
+      type: dynamics.bounce,
+      duration: 800,
+      bounciness: 0
+    }
+  );
+  dynamics.animate(
+    this.pin,
+    {
+      scaleY: 0.8
+    },
+    {
+      type: dynamics.bounce,
+      duration: 800,
+      bounciness: 600,
+      delay: 650
+    }
+  );
+
+  dynamics.stop(this.pinShadow);
+  dynamics.css(this.pinShadow, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pinShadow,
+    {
+      scale: 0.6
+    },
+    {
+      type: dynamics.forceWithGravity,
+      bounciness: 0,
+      duration: 500,
+      delay: 150
+    }
+  );
+};
+
+CustomMarker.prototype.animateWobble = function() {
+  dynamics.stop(this.pinWrap);
+  dynamics.css(this.pinWrap, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pinWrap,
+    {
+      rotateZ: -45
+    },
+    {
+      type: dynamics.bounce,
+      duration: 1800
+    }
+  );
+
+  dynamics.stop(this.pin);
+  dynamics.css(this.pin, {
+    transform: "none"
+  });
+  dynamics.animate(
+    this.pin,
+    {
+      scaleX: 0.8
+    },
+    {
+      type: dynamics.bounce,
+      duration: 800,
+      bounciness: 1800
+    }
+  );
+};
+ 
+
+
+var dialog;
+$('.b').click(function () {
+    $("#dialog").css({"display": "block" });
+    dialog = $("#dialog").dialog({
+        uiLibrary: 'bootstrap',
+        resizable: true,
+        minWidth: 200,
+        maxWidth: 600,
+        minHeight: 200,
+        maxHeight: 150,
+        height: 380,
+        modal: false
+    });
+  
+});
+
+
+
+    var styledMapType = new google.maps.StyledMapType(
+        [
+{
+"featureType": "all",
+"elementType": "all",
+"stylers": [
+    {
+        "hue": "#e7ecf0"
+    }
+]
+},
+{
+"featureType": "road",
+"elementType": "all",
+"stylers": [
+    {
+        "saturation": -70
+    },
+    {
+        "visibility": "on"
+    }
+]
+},
+{
+"featureType": "transit",
+"elementType": "all",
+"stylers": [
+    {
+        "visibility": "off"
+    }
+]
+},
+{
+"featureType": "water",
+"elementType": "all",
+"stylers": [
+    {
+        "visibility": "simplified"
+    },
+    {
+        "saturation": -60
+    }
+]
+}
+],
+    {name: 'Uber Map'});
+
+
+var map = new google.maps.Map(document.getElementById("map"), {
+        center: new google.maps.LatLng(6.4377, 3.4828),
+        zoom: 13,
+    mapTypeControlOptions: {
+    mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+            'styled_map']
+  }
+    });
+
+
+    layer = new google.maps.FusionTablesLayer({
+      map: map,
+      heatmap: { enabled: false },
+      query: {
+        select: "col19",
+        from: "1QqOnEdbwnogwNT5bh0EVfc_vapXpyx1cP03HuLoM",
+        where: ""
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
+    });
+    
+map.mapTypes.set('styled_map', styledMapType);
+map.setMapTypeId('styled_map');
+
+
+
+
+
+ // console.log(show);
+
+
+
+var triangleCoords = [
+          {lat: 6.436381597541542, lng: 3.436746597290039},
+          {lat:  6.436562838105471, lng: 3.4368216991424556}, 
+          {lat: 6.436978625037177, lng: 3.4359419345855713},
+          {lat:  6.436877343636465, lng: 3.435904383659363},
+          {lat:   6.436781392817142, lng: 3.4358561038970943},
+          {lat:  6.436381597541542, lng: 3.436746597290039} 
+        ];
+
+        var bermudaTriangle = new google.maps.Polygon({
+          paths: triangleCoords,
+          strokeColor: 'purple',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: 'purple',
+          fillOpacity: 0.35
+        });
+        bermudaTriangle.setMap(map);
+
+
+
+
+
+   $('#button4').click( function (){
+
+
+       var map = new google.maps.Map(document.getElementById("map"), {
+        center: new google.maps.LatLng(6.436520193272727, 3.436746597290039),
+        zoom: 15,
+    mapTypeControlOptions: {
+    mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+            'styled_map']
+  }
+    });
+
+
+    layer = new google.maps.FusionTablesLayer({
+      map: map,
+      heatmap: { enabled: false },
+      query: {
+        select: "col3",
+        from: "1QqOnEdbwnogwNT5bh0EVfc_vapXpyx1cP03HuLoM",
+        where: ""
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
+    });
+    
+
+
+
+    var types = ['accounting','airport','amusement_park','aquarium','art_gallery','atm','bakery','bank','bar','beauty_salon','bicycle_store','book_store','bowling_alley','bus_station','cafe','campground','car_dealer','car_rental','car_repair','car_wash','casino','cemetery','church','city_hall','clothing_store','convenience_store','courthouse','dentist','department_store','doctor','electrician','electronics_store','embassy','fire_station','florist','funeral_home','furniture_store','gas_station','gym','hair_care','hardware_store','hindu_temple','home_goods_store','hospital','insurance_agency','jewelry_store','laundry','lawyer','library','liquor_store','local_government_office','locksmith','lodging','mel_delivery','meal_takeaway','mosque','movie_rental','movie_theater','moving_company','museum','night_club','painter','park','parking','pet_store','pharmacy','physiotherapist','plumber','police','post_office','real_estate_agency','restaurant','roofing_contractor','rv_park','school','shoe_store','shopping_mall','spa','stadium','storage','store','subway_station','synagogue','taxi_stand','train_station','transit_station','travel_agency','university','veterinary_care','zoo'];   
+
+
+
+var lineString1 = [
+[3.4363871812820435, 6.437676933092357],
+[3.4362101554870605, 6.437767553151276],
+[3.436800241470337, 6.438982926495911],
+[3.4378623962402344, 6.438353917847429],
+[3.4393537044525146, 6.437479701143547],
+[3.4401798248291016, 6.436872013035852],
+[3.4427922964096065, 6.435459401905693],
+ [3.44346284866333,  6.4352301853895835],
+[3.445351123809814, 6.4352301853895835],
+[3.4475183486938477, 6.435635312185104],
+[3.449535369873047, 6.436296307842024],
+[3.451359272003174, 6.437255816135845],
+[3.4523892402648926, 6.43770358605255],
+[3.4533119201660156, 6.437575651830928],
+[3.4544920921325684, 6.436552176897628],
+[3.4547066688537598, 6.436083083530553],
+[3.455028533935547, 6.435635312185104],
+[3.4554362297058105, 6.435613989730248],
+[3.4562301635742188, 6.434846380758954],
+ [3.459041118621826, 6.431733288041988],
+[3.461015224456787, 6.430262025259214],
+[3.4621095657348633, 6.430006153036236],
+[3.4633326530456543, 6.430091443791533],
+[3.464512825012207, 6.430325993294842],
+[3.4659934043884277, 6.430411283996476],
+[3.4674739837646484, 6.430731124000193],
+[3.4679245948791504, 6.430603188022854],
+[3.468804359436035, 6.430581865356833],
+[3.4693193435668945, 6.431029641155428],
+[3.4806919097900386, 6.4326075146349275],
+[3.5124170780181885, 6.437266477328929],
+[3.523693084716797, 6.438812347956388],
+[3.5260105133056636, 6.439110860362953],
+[3.528285026550293, 6.440027718799899],
+[3.5323619842529292, 6.441840108511905],
+[3.540859222412109, 6.445251648055643],
+[3.5460734367370605, 6.4474051705787065],
+[3.5507726669311523, 6.4493241433380115],
+[3.5525751113891597, 6.449814546322143],
+[3.5539913177490234, 6.45088063812882],
+[3.5548925399780273, 6.452095980052564],
+[3.5551929473876953, 6.4543774035096675],
+[3.55532169342041,  6.458940219589655],
+[3.555493354797363, 6.460752541666504],
+[3.5544204711914062, 6.46081650585651],
+[3.5527682304382324, 6.464345184474663],
+[3.5501074790954585, 6.463812153029286],
+[3.5500001907348633, 6.464398487588298]
+
+];
+
+
+
+
+
+localStorage.setItem("FiberRoutes", JSON.stringify(lineString1));
+var retrievedData = localStorage.getItem("FiberRoutes");
+var lineString = JSON.parse(retrievedData);
+
+lineString.length;
+
+//console.log(lineString.length);
+
+var path = [];
+var bounds = new google.maps.LatLngBounds();
+for (var i = 0; i < lineString.length; i++) {
+var pt = new google.maps.LatLng(lineString[i][1], lineString[i][0]);
+bounds.extend(pt);
+path.push(pt);
+}
+var polyline = new google.maps.Polyline({
+map: map,
+path: path,
+strokeColor: "red",
+strokeOpacity: 0.9,
+//zoom: 4,
+strokeWeight: 3
+});
+map.fitBounds(bounds);
+
+map.fitBounds(bounds);
+google.maps.event.addListener(polyline, 'mouseover', function(event) {
+ this.setOptions({
+   strokeOpacity: 1
+ });
+});
+
+google.maps.event.addListener(polyline, 'mouseout', function(event) {
+ this.setOptions({
+   strokeOpacity: 0.3
+ });
+});
+
+var sMark = new CustomMarker({
+position: new google.maps.LatLng(6.436520193272727, 3.436746597290039),
+map: map,
+title: "Start",
+//icon: "http://www.google.com/mapfiles/markerS.png"
+});
+
+map.mapTypes.set('styled_map', styledMapType);
+map.setMapTypeId('styled_map');
+
+
+//$("#button3").attr('disabled', 'disabled');
+ if ($("#button4")) {
+    $("#button3").attr('disabled', false);
+
+ } else $("#button3").attr('disabled', true);
+
+
+ $("#button4").attr('disabled', 'disabled');
+ $("#bala").css({"display": "inline"});
+ $(".x2").css({"animation":  "0s" });
+ $(".x1").css({"animation":   "move 2s infinite" });
+ $("#vgc").css({"display": "none"});
+
+ 
+
+
+
+
+ $('#button6').click( function (){
+
+ 
+  
+$('#share2').css({"display": "block",});
+$('#share2').attr('disabled' , 'disabled');
+$('#share1').css({"display": "none",});
+$('#panela').css({'display': 'block'});
+
+
+
+
+var textshare = document.getElementById('share2'); 
+
+
+var s1 = 6.43767;
+var s2 = 3.43638;
+
+
+var latdata = localStorage.getItem("lat1");
+var latmain = JSON.parse(latdata);
+
+var lngdata = localStorage.getItem("lng1");
+var lngmain  = JSON.parse(lngdata);
+
+
+
+textshare.value = "http://localhost/sandbox/efault/view.html?" + s1 + "&" + s2 + "&" + latmain + "&" + lngmain;
+
+
+
+
+//var w = document.getElementById("button1");
+var f1 = document.getElementById("text2").value;
+       
+   if (f1) {
+console.log(f1);
+
+var mark = new google.maps.Marker({
+position: polyline.GetPointAtDistance(f1),
+map: map,
+//title: "500m"
+});
+
+ mark.setAnimation(google.maps.Animation.BOUNCE);
+
+
+ $('#button7').append($('<div class="innerDiv1" />')).on('click', function (e) {
+
+var _this = $(this);
+
+_this
+.find('.innerDiv1')
+.removeClass('animate1')
+.css({
+ // left: e.originalEvent.clientX - _this.offset().left,
+//top: e.originalEvent.clientY - _this.offset().top
+})
+.addClass('animate1');
+
+document.getElementById("text2").value="";
+mark.setMap(null);
+map.setZoom(16);
+
+});
+
+map.panTo(mark.getPosition());
+map.setZoom(20);
+// e = document.getElementById("text1").value = ""; 
+} else {
+alert ("Enter a Value !");
+
+}
+
+
+//Street View
+
+  
+
+
+  var  cc1 =  parseFloat(window.localStorage.getItem('lat1'));
+  var  cc3 =   parseFloat(window.localStorage.getItem('lng1'));
+
+  var mainPlace = new google.maps.LatLng(cc1, cc3);
+
+  
+  
+
+  show = map.getStreetView();
+  show.setPosition(mainPlace);
+  //show.getVisible();
+ // mark.setAnimation(google.maps.Animation.BOUNCE);
+  show.setPov( /** @type {google.maps.StreetViewPov} */ ({
+    heading: 26,
+    pitch: 0
+  }));
+
+
+
+
+});
+
+
+      //var markers = [sMark];
+
+  
+ /*
+     $('#button1').click( function (){
+
+         //var w = document.getElementById("button1");
+         var e = document.getElementById("text1").value;
+                
+            if (e) {
+        console.log(e);
+
+    var mark = new google.maps.Marker({
+    position: polyline.GetPointAtDistance(e),
+    map: map,
+    //title: "500m"
+  });
+
+  map.panTo(mark.getPosition());
+  map.setZoom(20);
+// e = document.getElementById("text1").value = ""; 
+} else {
+    alert ("Enter a Value !");
+
+}
+
+
+ 
+ $('#button2').click( function (){ 
+
+    
+
+    //document.getElementById("text1").value = ""; 
+
+   // clearMarkers()
+ })
+
+ $('#button5').append($('<div class="innerDiv1" />')).on('click', function (e) {
+
+    var _this = $(this);
+  
+  _this
+  .find('.innerDiv1')
+  .removeClass('animate1')
+  .css({
+     // left: e.originalEvent.clientX - _this.offset().left,
+    //top: e.originalEvent.clientY - _this.offset().top
+  })
+  .addClass('animate1');
+
+    document.getElementById("text1").value="";
+    mark.setMap(null);
+    map.setZoom(16);
+
+ });
+
+
+ 
+
+});
+
+*/
+
+});
+
+
+
+
+
+
+ $('#button3').click( function (){
+     
+var map = new google.maps.Map(document.getElementById("map"), {
+center: new google.maps.LatLng(6.464249238855967, 3.5510730743408203),
+zoom: 15,
+mapTypeControlOptions: {
+mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
+ 'styled_map']
+}
+});
+
+
+ var lineString2 = [
+  [3.5500001907348633, 6.464398487588298],
+  [3.5501074790954585, 6.463812153029286],
+  [3.5527682304382324, 6.464345184474663],
+  [3.5544204711914062, 6.46081650585651],
+  [3.555493354797363, 6.460752541666504],
+  [3.55532169342041,  6.458940219589655],
+  [3.5551929473876953, 6.4543774035096675],
+  [3.5548925399780273, 6.452095980052564],
+  [3.5539913177490234, 6.45088063812882],
+  [3.5525751113891597, 6.449814546322143],
+  [3.5507726669311523, 6.4493241433380115],
+  [3.5460734367370605, 6.4474051705787065],
+  [3.540859222412109, 6.445251648055643],
+  [3.5323619842529292, 6.441840108511905],
+  [3.528285026550293, 6.440027718799899],
+  [3.5260105133056636, 6.439110860362953],
+  [3.523693084716797, 6.438812347956388],
+  [3.5124170780181885, 6.437266477328929],
+  [3.4806919097900386, 6.4326075146349275],
+  [3.4693193435668945, 6.431029641155428],
+  [3.468804359436035, 6.430581865356833],
+  [3.4679245948791504, 6.430603188022854],
+  [3.4674739837646484, 6.430731124000193],
+  [3.4659934043884277, 6.430411283996476],
+  [3.464512825012207, 6.430325993294842],
+  [3.4633326530456543, 6.430091443791533],
+  [3.4621095657348633, 6.430006153036236],
+  [3.461015224456787, 6.430262025259214],
+  [3.459041118621826, 6.431733288041988],
+  [3.4562301635742188, 6.434846380758954],
+  [3.4554362297058105, 6.435613989730248],
+  [3.455028533935547, 6.435635312185104],
+  [3.4547066688537598, 6.436083083530553],
+  [3.4544920921325684, 6.436552176897628],
+  [ 3.4533119201660156, 6.437575651830928],
+  [3.4523892402648926, 6.43770358605255],
+  [3.451359272003174, 6.437255816135845],
+  [3.449535369873047, 6.436296307842024],
+  [3.4475183486938477, 6.435635312185104],
+  [3.445351123809814, 6.4352301853895835],
+  [3.44346284866333,  6.4352301853895835],
+  [3.4427922964096065, 6.435459401905693],
+  [3.4401798248291016, 6.436872013035852],
+  [3.4393537044525146, 6.437479701143547],
+  [ 3.4378623962402344, 6.438353917847429],
+  [3.436800241470337, 6.438982926495911],
+  [3.4362101554870605, 6.437767553151276],
+  [3.4363871812820435, 6.437676933092357]
+];
+
+localStorage.setItem("FiberRoutesVGC", JSON.stringify(lineString2));
+var retrievedData1 = localStorage.getItem("FiberRoutesVGC");
+var lineStrings = JSON.parse(retrievedData1);
+
+lineStrings.length;
+
+//console.log(lineStrings.length);
+
+var source1 = [3.5500001907348633, 6.464398487588298] ;
+
+//console.log(source1);
+
+localStorage.setItem("sourcep",JSON.stringify(source1));
+var retrievedData4 = localStorage.getItem("sourcep");
+var source2 = JSON.parse(retrievedData4);
+source2.length; 
+
+
+
+
+
+var path = [];
+var bounds = new google.maps.LatLngBounds();
+for (var i = 0; i < lineStrings.length; i++) {
+var pt = new google.maps.LatLng(lineStrings[i][1], lineStrings[i][0]);
+bounds.extend(pt);
+path.push(pt);
+}
+var polyline = new google.maps.Polyline({
+map: map,
+path: path,
+strokeColor: "red",
+strokeOpacity: 0.9,
+//zoom: 4,
+//editable: true,
+strokeWeight: 3,
+icons: [{
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 6,
+            strokeColor: '#393'
+          },
+          offset: '100%'
+        }]
+});
+map.fitBounds(bounds);
+
+map.fitBounds(bounds);
+google.maps.event.addListener(polyline, 'mouseover', function(event) {
+ this.setOptions({
+   strokeOpacity: 1
+ });
+});
+
+google.maps.event.addListener(polyline, 'mouseout', function(event) {
+ this.setOptions({
+   strokeOpacity: 0.3
+ });
+});
+
+
+
+  function animate() {
+    var count = 0;
+   var int = setInterval(function() {
+      count = (count + 1) % 200;
+      var icons = polyline.get('icons');
+      icons[0].offset = (count / 2) + '%';
+      polyline.set('icons', icons);
+  }, 24);
+};
+
+
+
+
+
+
+var sMark1 = new CustomMarker({
+position: new google.maps.LatLng(6.464398487588298, 3.5500001907348633),
+map: map,
+title: "Start",
+//icon: "http://www.google.com/mapfiles/markerS.png"
+});
+
+
+
+map.mapTypes.set('styled_map', styledMapType);
+map.setMapTypeId('styled_map');
+
+
+
+
+
+//$("#text1").css({"display": "block"});
+$("#button3").attr('disabled', 'disabled');
+$(".x1").css({"animation":  "0s" });
+$(".x2").css({"animation":   "move 2s infinite" });
+$("#vgc").css({"display": "inline"});
+$("#bala").css({"display": "none"});
+
+
+if ($("#button3")) {
+    $("#button4").attr('disabled', false);
+
+
+ } else $("#button4").attr('disabled', true);
+
+
+$('#button1').click( function (){
+   
+$('#share1').css({"display": "block",});
+$('#share1').attr('disabled' , 'disabled');
+$('#share2').css({"display": "none",});
+$('#panelb').css({'display': 'block'});
+
+var textshare = document.getElementById('share1'); 
+
+
+var s1 = 6.46424;
+var s2 = 3.55107;
+
+
+var latdata = localStorage.getItem("lat1");
+var latmain = JSON.parse(latdata);
+
+var lngdata = localStorage.getItem("lng1");
+var lngmain  = JSON.parse(lngdata);
+
+
+
+textshare.value = "http://localhost/sandbox/efault/view.html?" + s1 + "&" + s2 + "&" + latmain + "&" + lngmain;
+
+
+
+//var w = document.getElementById("button1");
+var e1 = document.getElementById("text1").value;
+       
+   if (e1) {
+console.log(e1);
+
+mark = new google.maps.Marker({
+position: polyline.GetPointAtDistance(e1),
+map: map,
+//title: "500m",
+icon: "http://www.google.com/mapfiles/markerF.png"
+});
+mark.setAnimation(google.maps.Animation.BOUNCE);
+
+
+ google.maps.event.addListener(mark, 'click', function(a) {
+
+//console.log(a);
+
+if(mark){
+    
+    console.log(a.latLng.lat().toFixed(5) + ', ' + a.latLng.lng().toFixed(5));
+}
+});
+
+
+$('#button5').append($('<div class="innerDiv1" />')).on('click', function (e) {
+
+var _this = $(this);
+
+_this
+.find('.innerDiv1')
+.removeClass('animate1')
+.css({
+ // left: e.originalEvent.clientX - _this.offset().left,
+//top: e.originalEvent.clientY - _this.offset().top
+})
+.addClass('animate1');
+
+document.getElementById("text1").value="";
+mark.setMap(null);
+map.setZoom(16);
+
+});
+
+
+//animate();
+map.panTo(mark.getPosition());
+map.setZoom(20);
+// e = document.getElementById("text1").value = ""; 
+} else {
+alert ("Enter a Value !");
+
+}
+
+
+
+
+ var  cc4 =  parseFloat(window.localStorage.getItem('lat1'));
+  var  cc5 =   parseFloat(window.localStorage.getItem('lng1'));
+
+  var mainPlace = new google.maps.LatLng(cc4, cc5);
+
+  
+  
+
+  show = map.getStreetView();
+  show.setPosition(mainPlace);
+  //show.getVisible();
+ // mark.setAnimation(google.maps.Animation.BOUNCE);
+  show.setPov( /** @type {google.maps.StreetViewPov} */ ({
+    heading: 26,
+    pitch: 0
+  }));
+
+});
+
+
+});
+
+ 
+}
+
+
+//var panorama;
+
+function toggleStreetView() {
+
+
+console.log(mark);
+  
+  var toggle = show.getVisible();
+  if (toggle == false) {
+    show.setVisible(true);
+   // mark.setVisible(false);
+  } else {
+    show.setVisible(false);
+    //mark.setVisible(true);
+  }
+
+
+}
+
+
+
+$('#a').click(function(){
+ // alert ('Jesus');
+
+ if ($('#button1').on()) {
+
+  alert ('Clicked');
+ }
+ else {
+   alert('unclicked');
+ }
+
+})
+
+
+
+var sidebar = $('#sidebar').sidebar();
+google.maps.event.addDomListener(window, "load", initialize);
+
+
+
+/*********************************************************************\
+*                                                                     *
+* epolys.js                                          by Mike Williams *
+* updated to API v3                                  by Larry Ross    *
+*                                                                     *
+* A Google Maps API Extension                                         *
+*                                                                     *
+* Adds various Methods to google.maps.Polygon and google.maps.Polyline *
+* .GetPointAtDistance() returns a GLatLng at the specified distance   *
+*                   along the path.                                   *
+*                   The distance is specified in metres               *
+*                   Reurns null if the path is shorter than that      *
+*                                                                     *
+***********************************************************************
+*                                                                     *
+*   This Javascript is provided by Mike Williams                      *
+*   Blackpool Community Church Javascript Team                        *
+*   http://www.blackpoolchurch.org/                                   *
+*   http://econym.org.uk/gmap/                                        *
+*                                                                     *
+*   This work is licenced under a Creative Commons Licence            *
+*   http://creativecommons.org/licenses/by/2.0/uk/                    *
+*                                                                     *
+***********************************************************************
+*                                                                     *
+* Version 1.1       6-Jun-2007                                        *
+* Version 1.2       1-Jul-2007 - fix: Bounds was omitting vertex zero *
+*                                add: Bearing                         *
+* Version 1.3       28-Nov-2008  add: GetPointsAtDistance()           *
+* Version 1.4       12-Jan-2009  fix: GetPointsAtDistance()           *
+* Version 3.0       11-Aug-2010  update to v3                         *
+*                                                                     *
+\*********************************************************************/
+
+// === A method which returns a GLatLng of a point a given distance along the path ===
+// === Returns null if the path is shorter than the specified distance ===
+google.maps.Polygon.prototype.GetPointAtDistance = function(metres) {
+  // some awkward special cases
+  if (metres == 0) return this.getPath().getAt(0);
+  if (metres < 0) return null;
+  if (this.getPath().getLength() < 2) return null;
+  var dist = 0;
+  var olddist = 0;
+  for (var i = 1;
+    (i < this.getPath().getLength() && dist < metres); i++) {
+    olddist = dist;
+    dist += google.maps.geometry.spherical.computeDistanceBetween(this.getPath().getAt(i), this.getPath().getAt(i - 1));
+  }
+  if (dist < metres) {
+    alert ("Beyond the Feeder cable limit - (16km)");
+    return null;
+  }
+  var p1 = this.getPath().getAt(i - 2);
+  var p2 = this.getPath().getAt(i - 1);
+  var m = (metres - olddist) / (dist - olddist);
+  //console.log(p1.lat());
+  //console.log(p1.lng());
+  //console.log(p1.lat());
+  //console.log(p2.lat());
+  //console.log(p2.lng());
+  //console.log (p2.lat() - p1.lat());
+  //console.log(p2.lng() - p1.lng());
+
+  //console.log((p1.lat() + (p2.lat() - p1.lat()) * m));
+  var lata = (p1.lat() + (p2.lat() - p1.lat()) * m);
+
+  var lnga = (p1.lng() + (p2.lng() - p1.lng()) * m); 
+
+   localStorage.setItem("lat1",JSON.stringify(lata));
+   localStorage.setItem("lng1", JSON.stringify(lnga));
+
+
+
+  return new google.maps.LatLng(p1.lat() + (p2.lat() - p1.lat()) * m, p1.lng() + (p2.lng() - p1.lng()) * m);
+  
+ 
+}
+
+// === Copy all the above functions to GPolyline ===
+google.maps.Polyline.prototype.GetPointAtDistance = google.maps.Polygon.prototype.GetPointAtDistance;
+       
+
+
+
+//console.log(a);
+//console.log(b);
+            
+    var share;
+    var f1;
+    var mapwin = null;
+    var point1 = 6.1;
+    var point2 = 3.1;
+    var point3 = 6.2;
+    var point4 = 3.2;
+    
+    
+    function initialize2() {
+    f1=document.frm;
+   // customIndex=f1.model.length-1;
+   // f1.results.value = "";
+   // geocoder=new google.maps.Geocoder();
+   // f1.search.focus();
+    }
+  
+    
+    function copy() {
+    
+    // share = document.getElementById("share");
+
+  var copyText = document.getElementById("share1");
+  var copyText1 = document.getElementById("share2");
+
+  copyText.select();
+  copyText1.select();
+
+  document.execCommand("copy");
+  document.getElementById("u").innerHTML = "COPIED!";
+    }
+
+    
+    google.setOnLoadCallback
+    (initialize2);
+
+    </script>
+
+    <script> 
+
+var retrievedData3 = localStorage.getItem("sourcep");
+var retrievedData4 = JSON.parse(retrievedData3);
+
+
+var retrievedData5 = localStorage.getItem("sourced");
+var retrievedData6 = JSON.parse(retrievedData5);
+
+
+
+    $('#button1').click ( function(){
+
+      console.log(retrievedData4),
+      console.log(retrievedData6)
+
+    });
+    
+
+
+
+   $(function () {
+     
+  
+    var to = $("#emails").val();
+    var subject = $("#subject").val();
+    var url = $("#url").val();
+
+    $('#sendmail').on('click',function (e) {
+     
+            $(".sp-circle").fadeIn("fast");
+              $.ajax({
+                type: "POST",
+                 url: "sendmail.php",
+                  data: $("#frm2").serialize(),
+                  success: function () {  
+                  //  $(".sp-circle").css({"display": "block"});               
+                   //alert("Email has been sent!");
+                 $(".sp-circle").fadeOut(1, function(){
+                alert("Email has been sent!");
+                });
+                 $("#emails").val("");
+                 $("#subject").val("");
+                 $("#url").val("");
+
+                }
+              });
+          e.preventDefault();
+        });
+});
+
+
+
+</script>
+   
+   
+
+</body>
+</html>
