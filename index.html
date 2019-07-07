@@ -478,6 +478,8 @@
       .alert-dismissible .close {
         position: unset;
       }
+	    
+#googft-legend{background-color:rgba(249, 249, 249, 0.82); border:1px solid #000000;font-family:'Lato', sans-serif;font-size:12px;margin:5px;border-radius: 10px;padding:10px 10px 8px}#googft-legend p{font-weight:bold;margin-top:0}#googft-legend div{margin-bottom:5px}.googft-legend-swatch{border:1px solid;float:left;height:12px;margin-right:8px;width:20px}.googft-legend-range{margin-left:0}.googft-dot-icon{margin-right:8px}.googft-paddle-icon{height:24px;left:-8px;margin-right:-8px;position:relative;vertical-align:middle;width:24px}.googft-legend-source{margin-bottom:0;margin-top:8px}.googft-legend-source a{color:#666;font-size:11px}
      
     </style>
 </head>
@@ -744,6 +746,29 @@
       <button type='button'  class="btn btn-warning" onclick="toggleStreetView()"> <i class="fas fa-street-view"></i>  Toggle Street View</button>  
       </div>
     <div id="map" class="sidebar-map"></div>
+	
+	<div id="googft-legend" style=" z-index: 0;  position: absolute;  bottom: 60px; left: 20px; ">
+      <p id="googft-legend-title" style="text-align: center;">Legend</p>
+      <div>
+        <img class="googft-dot-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAi0lEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NijL7v3p1+v8zZ6rAdGCg4X+g+EyYorS0NNv////PxMCxsRYghbEgRQcOHCjGqmjv3kKQor0gRQ8fPmzHquj27WaQottEmxQLshubopAQI5CiEJjj54N8t3FjFth369ZlwHw3jQENgMJpIzSc1iGHEwB8p5qDBbsHtAAAAABJRU5ErkJggg=="/>
+        <span class="googft-legend-range">Poles</span>
+      </div>
+     
+      <div>
+        <img class="googft-dot-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAiklEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NUlH5v9rF5f+ZoCAwHaig8B8oPhOmKC1NU/P//7Q0DByrqgpSGAtSdOCAry9WRXt9fECK9oIUPXwYFYVV0e2ICJCi20SbFAuyG5uiECUlkKIQmOPng3y30d0d7Lt1bm4w301jQAOgcNoIDad1yOEEAFm9fSv/VqtJAAAAAElFTkSuQmCC"/>
+        <span class="googft-legend-range">HandHoles</span>
+      </div>
+
+      <div>
+        <img class="googft-dot-icon" src="http://maps.google.com/mapfiles/dots/green.gif"/>
+        <span class="googft-legend-range">Customer ONTs</span>
+      </div>
+      <div class="googft-legend-source">
+      <img src="images/ipnx.png" style="width: 60px;">
+        
+      </div>
+      <input id="googft-legend-close" style="display:none" type="button" value="Hide">
+    </div>
 
     
 
